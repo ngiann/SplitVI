@@ -29,9 +29,10 @@ function runme(iterations=1)
     plotdensity(x -> exp(logtarget(x)))
     plot_ellipse(post)
 
-    post1, post2 = MvNormal(zeros(2), Matrix(diagm(ones(2)))), MvNormal(zeros(2), Matrix(diagm(ones(2))))
 
     function splitvi(param)
+
+        post1, post2 = MvNormal(zeros(2), Matrix(diagm(ones(2)))), MvNormal(zeros(2), Matrix(diagm(ones(2))))
 
         @assert(length(param) == 5)
 
@@ -63,7 +64,7 @@ function runme(iterations=1)
 
 
 
-    result = optimize(x->-splitvi(x)[1], randn(5), NelderMead(), Optim.Options(show_every=1, show_trace=true, iterations=iterations))
+    result = optimize(x->-splitvi(x)[1], 3*randn(5), NelderMead(), Optim.Options(show_every=1, show_trace=true, iterations=iterations))
 
     logevcombined, post1, post2 = splitvi(result.minimizer)
 
