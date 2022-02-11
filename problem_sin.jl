@@ -7,7 +7,7 @@ function problem_sin()
 
     loglikel(z) = -U(z)
 
-    logprior(z) = Distributions.logpdf(MvNormal(zeros(2), 0.9), z)
+    logprior(z) = Distributions.logpdf(MvNormal(zeros(2), 1.9), z)
 
     logp(z) = loglikel(z) + logprior(z)
 
